@@ -107,7 +107,7 @@ import FormTextArea from '@/Components/Input/FormTextArea.vue'
                   </div>
               </div>
               <div class="flex justify-center mt-2">
-                  <div class="w-16 h-16 rounded-full border-2 border-gray-400 flex items-center justify-center shadow-md overflow-hidden">
+                  <div class="w-36 rounded h-24  border-2 border-gray-400 flex items-center justify-center shadow-md overflow-hidden">
                       <svg v-if="!props.user.image && !form.image_preview" xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="gray" stroke-width="1">
                           <path
                           stroke-linecap="round"
@@ -115,15 +115,15 @@ import FormTextArea from '@/Components/Input/FormTextArea.vue'
                           d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                           />
                       </svg>
-                      <img v-else-if="form.image_preview" :src="form.image_preview" class="object-fit rounded-full h-full" alt="" />
-                      <img v-else :src="`images/profile/${props.user.image}`" class="object-fit rounded-full h-full" alt="" />
+                      <img v-else-if="form.image_preview" :src="form.image_preview" class="object-fit  h-full" alt="" />
+                      <img v-else :src="`images/profile/${props.user.image}`" class="object-fit  h-full" alt="" />
                   </div>
               </div>
               <div>
                   <div class="flex justify-center">
                       <input id="avatar" type="file" @change="imageSelected" class="hidden" accept="image/*" />
                       <label for="avatar" class="px-3 py-2 hover:bg-blue-700 bg-blue-600 rounded-md text-white text-xs tracking-wider uppercase font-medium hover:cursor-pointer mr-2 mt-2 ">Upload Image</label>
-                      <button type="submit" class="px-3 py-2 hover:bg-red-700 bg-red-600 rounded-md text-white text-xs tracking-wider uppercase font-medium hover:cursor-pointer mt-2" size="sm" @click="resetUploadedImage" :disabled="!form.image_preview">Reset Image</button>
+                      <button type="submit" class="px-3 py-2 bg-red-600 rounded-md text-white text-xs tracking-wider uppercase font-medium hover:cursor-pointer mt-2" size="sm" @click="resetUploadedImage" :disabled="!form.image_preview">Reset Image</button>
                   </div>
               </div>
               <div class="container mx-auto flex flex-col px-4 justify-center mt-10 spa-12 md:space-y-0 md:flex-row">
@@ -143,8 +143,8 @@ import FormTextArea from '@/Components/Input/FormTextArea.vue'
 
                           <FormTextArea id="address" v-model="form.address" placeholder="Enter your address" label="Address" :error="errors.address"></FormTextArea>
 
-                          <FormInputSelect id="gender" label="Gender" v-model="form.gender">
-                              <!-- <option disabled value="">Please select your gender</option> -->
+                          <FormInputSelect id="gender" label="Gender" v-model="form.gender" :error="errors.gender">
+                              <option>Please select your gender</option>
                               <option value="Male" class="font-medium">Male</option>
                               <option value="Female" class="font-medium">Female</option>
                           </FormInputSelect>
