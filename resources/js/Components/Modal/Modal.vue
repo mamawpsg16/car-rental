@@ -2,30 +2,23 @@
 import { onMounted,ref } from 'vue';
   /** PROPS */
   const props = defineProps({
-    persistent: {
-      type: Boolean,
-      default: false,
-    },
-    data:{
-      type:Object,
-      default:null
-    }
+    // persistent: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // data:{
+    //   type:Object,
+    //   default:null
+    // }
   });
-  /** EDIT CONFIG */
-  // const editConfiguration = () =>{
-  //   console.log('edit');
-  // }
 
   /** EMIT */
   const emit = defineEmits(['close']);
   const emitClose = () => {
-    if (props.persistent) return;
+    // if (props.persistent) return;
     emit('close');
   };
-  // const editModal = () => {
-  //   console.log('edit')
-  //     emit('update:modelValue',true);
-  // }
+
   onMounted(()=>{
   })
 </script>
@@ -37,7 +30,7 @@ import { onMounted,ref } from 'vue';
       <div class="flex w-full px-4 sm:px-0">
         <Transition>
           <div class="mx-auto min-w-full  sm:min-w-[468px] md:min-w-[568px] bg-white box-shadow-lg rounded-lg min-w-2xl z-40 inset-0">
-            <div v-if="data === null">
+            <div>
               <div class="px-5 pt-5 pb-3">
                 <slot name="title" />
               </div>
@@ -48,7 +41,7 @@ import { onMounted,ref } from 'vue';
                 <slot name="footer" />
               </div>
             </div>
-            <div v-else>
+            <!-- <div v-else>
               <div class="px-5 pt-5 pb-3 font-bold">
                 {{data.name}}
               </div>
@@ -66,7 +59,7 @@ import { onMounted,ref } from 'vue';
               <div class="flex justify-end px-5 py-4">
                  <button @click="editModal" class="text-base bg-blue-600 rounded-lg py-2 px-4 mt-2 hover:bg-blue-700  rounded-md text-white text-base tracking-wider uppercase font-medium hover:cursor-pointer"> Edit </button>
               </div>
-            </div>
+            </div> -->
           </div>
         </Transition>
       </div>

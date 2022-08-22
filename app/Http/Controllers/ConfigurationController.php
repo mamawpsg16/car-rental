@@ -16,7 +16,7 @@ class ConfigurationController extends Controller
     public function index()
     {
         $configurations = Configuration::get();
-        return Inertia::render('Configuration',compact('configurations'));
+        return Inertia::render('Configuration/ConfigurationIndex',compact('configurations'));
     }
 
     /**
@@ -81,7 +81,27 @@ class ConfigurationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = $request->validate([
+            'id' => 'required',
+            'name' => 'required',
+            'details' => 'required',
+            'image' => 'required|image',
+            'fee' => 'required'
+        ]);
+
+        Configuration::where('id', $id)
+        ->update($validate);
+
+        // $update = Configuration::create($validate);
+        if ($request->hasFile('image')) {
+            $fileName = 'image'.time().'.'.$request->image->extension();
+            Configuration::where('id', $id)
+            ->update(['image' => $fileName]);
+            $request->file('image')->move(public_path('images/car-images'), $fileName);
+        }
+        
+        return back()->with('succes','Configuration updated successfully!');
+      
     }
 
     /**

@@ -22,7 +22,8 @@ const props = defineProps({
         type:String
     },
     error:{
-        type:String
+        type:String,
+        default:null
     }
 })
 const handleButtonClick = () =>{
